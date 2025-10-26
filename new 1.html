@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHO_PROTECT - Safety & Trust: Your 24/7 Digital Guardian for Women Safety</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        // Keeping Inter for main body, but the logo text is styled via CSS
+                        sans: ['Inter', 'sans-serif'], 
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        'primary': '#F72585', /* Neon Magenta (replaces Deep Pink) */
+                        'secondary': '#4895EF', /* Neon Cyan (replaces Yellow Accent) */
+                        'dark-bg': '#0F172A', /* Darker Slate for Footer/Headers */
+                        'safety-green': '#4CAF50',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* General Body Styling - Changed to Dark Theme Base */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1F2937; /* Dark Gray Background */
+            color: #f3f4f6; /* Light text for dark background */
+        }
+
+        /* Custom 3D Shadow for Image - Adjusted for Dark Background */
+        .image-3d-shadow {
+             box-shadow: 0 15px 40px rgba(72, 149, 239, 0.4), 0 0 0 8px rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- LOGO STYLES (UPDATED for WHO_PROTECT) --- */
+        .site-logo-text {
+            font-size: 1.5rem; 
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 8px rgba(247, 37, 133, 0.8);
+            /* Gradient for the logo text */
+            background: linear-gradient(90deg, #4895EF, #F72585);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .site-tagline-text {
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 600;
+            color: #4895EF; /* Neon Cyan */
+            text-shadow: 0 0 5px rgba(72, 149, 239, 0.5);
+            margin-top: -0.25rem;
+        }
+        
+        /* === NEW: LOGO IMAGE STYLES FOR ELIPSE/BIGGER SIZE (Re-added) === */
+        .site-logo-image {
+            /* Setting fixed size for a better look in ellipse */
+            width: 48px; /* w-12 */
+            height: 48px; /* h-12 */
+            object-fit: cover; /* Ensures image fills the circle */
+            border-radius: 50%; /* Makes it an ellipse/circle */
+            box-shadow: 0 0 10px rgba(247, 37, 133, 0.7); /* Subtle neon glow */
+            border: 2px solid #4895EF; /* Cyan border */
+        }
+        /* ================================================= */
+
+        /* Custom style for the Sign In gradient button to match the image */
+        .btn-gradient {
+            background-image: linear-gradient(90deg, #F72585, #4895EF);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(247, 37, 133, 0.4);
+            font-weight: 700;
+        }
+        .btn-gradient:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(72, 149, 239, 0.6);
+        }
+
+        /* Custom style for the small icon button */
+        .btn-icon-gradient {
+            background-image: linear-gradient(90deg, #F72585, #4895EF);
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(247, 37, 133, 0.4);
+            transition: all 0.3s ease;
+        }
+        .btn-icon-gradient:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+        
+        /* --- NEW: Custom style for the Explore gradient button (matching the image) --- */
+        .btn-explore-gradient {
+            /* Reverse gradient direction for the Explore button */
+            background-image: linear-gradient(90deg, #4895EF, #F72585); 
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(247, 37, 133, 0.4);
+            font-weight: 700;
+        }
+        .btn-explore-gradient:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(72, 149, 239, 0.6);
+        }
+
+        /* Light mode adjustments for the Explore button */
+        .light-mode .btn-explore-gradient {
+            box-shadow: 0 4px 15px rgba(72, 149, 239, 0.4);
+        }
+        .light-mode .btn-explore-gradient:hover {
+            box-shadow: 0 6px 20px rgba(247, 37, 133, 0.6);
+        }
+
+        /* --- Scroll Progress Bar Style --- */
+        #scroll-progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background-color: #F72585; /* Neon Magenta */
+            z-index: 50;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        /* --- Scroll-Reveal Animations (General) - Keeping original animations for effect --- */
+        
+        /* General fade-in for titles */
+        @keyframes fadeInDown {
+            0% { opacity: 0; transform: translateY(-30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-title.is-visible {
+            animation: fadeInDown 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        .feature-card, .process-step, .testimonial-card, .faq-item, .contact-box, .contact-form-content, .blog-card, .tech-card, .ai-info-card, .team-member-card {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .feature-card.is-visible, .process-step.is-visible, .testimonial-card.is-visible, .faq-item.is-visible, .contact-box.is-visible, .contact-form-content.is-visible, .blog-card.is-visible, .tech-card.is-visible, .ai-info-card.is-visible, .team-member-card.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* --- Hero Slide-In Animations --- */
+        @keyframes slideInLeft {
+            0% { opacity: 0; transform: translateX(-100px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            0% { opacity: 0; transform: translateX(100px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        .hero-text-content {
+            opacity: 0;
+            transition: none; 
+        }
+        .hero-text-content.is-visible {
+            animation: slideInLeft 1s ease-out forwards;
+        }
+        
+        .hero-image-content {
+            opacity: 0;
+            transition: none;
+        }
+        .hero-image-content.is-visible {
+            animation: slideInRight 1s ease-out forwards;
+        }
+        
+        /* --- Pulsing Icon Animation (for Feature Icons) - Adjusted to Primary Color --- */
+        @keyframes iconPulse {
+            0% { box-shadow: 0 0 0 0px rgba(247, 37, 133, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(247, 37, 133, 0); }
+            100% { box-shadow: 0 0 0 0px rgba(247, 37, 133, 0); }
+        }
+        
+        .icon-box {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(247, 37, 133, 0.2); /* Primary color light bg */
+            color: #F72585; /* Primary color */
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 30px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .icon-box:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            z-index: -1;
+            animation: iconPulse 2s infinite cubic-bezier(0.66, 0, 0, 1);
+        }
+
+        /* --- Blog Card Specific Styles - Adjusted for Dark Theme --- */
+        .blog-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: #2D3748; /* Darker Card BG */
+        }
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .blog-meta-tag {
+            background-color: #F72585; /* Primary Color */
+            color: white;
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            border-radius: 9999px;
+            display: inline-block;
+        }
+
+        /* --- Technology Stack Styles - Adjusted for Dark Theme --- */
+        .tech-card {
+            position: relative;
+            background: #2D3748; /* Darker Card Background */
+            border: 1px solid #4895EF; /* Neon Cyan Border */
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(72, 149, 239, 0.2); /* Subtle Neon Shadow */
+            opacity: 0; 
+        }
+        
+        .tech-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 30px rgba(72, 149, 239, 0.5); /* Enhanced Neon Shadow on hover */
+        }
+
+        .tech-card::before {
+            /* Adding a subtle shimmer effect for the high-tech look */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -75%;
+            width: 50%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            transform: skewX(-20deg);
+            transition: left 0.8s ease;
+        }
+        
+        .tech-card:hover::before {
+            left: 125%;
+        }
+
+
+        .tech-card.animate-left.is-visible { animation: slideInLeftTech 0.8s ease-out forwards; }
+        .tech-card.animate-up.is-visible { animation: fadeInUpTech 0.8s ease-out forwards; }
+        .tech-card.animate-right.is-visible { animation: slideInRightTech 0.8s ease-out forwards; }
+        .tech-card.animate-scale.is-visible { animation: scaleUpTech 0.8s ease-out forwards; }
+
+        .tech-card-content {
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* --- Community Section Styles - Adjusted for Dark Theme --- */
+        .community-text-card {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            background-color: #2D3748; /* Darker Card BG */
+        }
+        .community-text-card:hover {
+            transform: translateY(-5px) rotateX(1deg);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        /* --- Hover Effects - Adjusted to Primary Color --- */
+        .btn-primary {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(247, 37, 133, 0.4);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(247, 37, 133, 0.6);
+            background-color: #D61A70;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 10px 30px rgba(247, 37, 133, 0.2);
+        }
+        
+        /* --- Back-to-Top Button Style - Adjusted to Primary Color --- */
+        #back-to-top {
+            background-color: #F72585;
+        }
+        #back-to-top:hover {
+            background-color: #D61A70;
+        }
+
+        /* --- Custom Login Modal Styles (Matching Image) --- */
+        #login-modal, #team-detail-modal {
+            background: linear-gradient(135deg, rgba(31, 41, 55, 0.95), rgba(15, 23, 42, 0.95)); /* Dark subtle gradient for modal backdrop */
+        }
+        .login-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 15px 60px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px; /* Reduced for a tighter look */
+        }
+        .login-input-group {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+        }
+        .login-input-group input {
+            background: none;
+            border: none;
+            color: #f3f4f6;
+            padding-left: 10px;
+        }
+        .login-input-group input:focus {
+            outline: none;
+            box-shadow: none;
+        }
+        .login-title {
+            color: #F72585; /* Primary */
+            text-shadow: 0 0 5px rgba(247, 37, 133, 0.5);
+            font-weight: 900;
+        }
+
+        /* Animated Circles in Background for Login Modal (Optional - but helps match the image mood) */
+        .login-bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.3;
+            filter: blur(50px);
+            z-index: -1;
+        }
+        .circle-1 { top: 10%; left: 10%; width: 150px; height: 150px; background-color: #4895EF; }
+        .circle-2 { bottom: 10%; right: 10%; width: 200px; height: 200px; background-color: #F72585; }
+        .circle-3 { top: 40%; right: 5%; width: 100px; height: 100px; background-color: #4895EF; }
+        
+        /* --- NEW AI Section Styles (Matching Image) --- */
+        .ai-section-gradient {
+            background: linear-gradient(135deg, #1F2937, #0F172A);
+            position: relative;
+        }
+        .ai-title-gradient {
+            background: linear-gradient(90deg, #F72585, #4895EF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(247, 37, 133, 0.5);
+        }
+        .ai-info-card {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            background-color: #2D3748; /* Darker Card BG */
+            border-left: 5px solid #F72585;
+        }
+        .ai-info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(247, 37, 133, 0.2);
+        }
+
+        /* --- LIGHT MODE CSS CHANGES (NEW) --- */
+        .light-mode body {
+            background-color: #F8F9FA !important; /* Light Gray/White Background */
+            color: #212529 !important; /* Dark text for light background */
+        }
+        .light-mode #team-detail-modal div.relative {
+            background-color: #FFFFFF !important;
+        }
+        .light-mode .bg-gray-800 {
+            background-color: #F8F9FA !important;
+        }
+        .light-mode .bg-gray-900 {
+            background-color: #E9ECEF !important;
+        }
+        .light-mode .text-gray-300 {
+            color: #495057 !important;
+        }
+        .light-mode .text-gray-400 {
+            color: #6C757D !important;
+        }
+        .light-mode .text-gray-500 {
+            color: #ADB5BD !important;
+        }
+        .light-mode .text-white {
+            color: #212529 !important;
+        }
+        .light-mode .text-secondary {
+            color: #F72585 !important; /* Secondary color becomes primary accent in light mode */
+        }
+        .light-mode .text-primary {
+            color: #4895EF !important; /* Primary color becomes secondary accent in light mode */
+        }
+        .light-mode .bg-dark-bg {
+            background-color: #FFFFFF !important;
+        }
+        .light-mode .sticky-nav {
+            background-color: #FFFFFF !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .light-mode .shadow-lg {
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .light-mode .border-gray-700 {
+            border-color: #DEE2E6 !important;
+        }
+        .light-mode .login-card {
+            background: #FFFFFF;
+            backdrop-filter: none;
+            box-shadow: 0 15px 60px rgba(0, 0, 0, 0.2);
+            border: 1px solid #DEE2E6;
+        }
+        .light-mode .login-input-group {
+            background-color: #F1F3F5;
+        }
+        .light-mode .login-input-group input {
+            color: #212529;
+        }
+        .light-mode .login-title {
+            color: #4895EF !important;
+            text-shadow: none;
+        }
+        .light-mode .btn-gradient {
+            box-shadow: 0 4px 15px rgba(72, 149, 239, 0.4);
+        }
+        .light-mode .btn-gradient:hover {
+            box-shadow: 0 6px 20px rgba(247, 37, 133, 0.6);
+        }
+        .light-mode .image-3d-shadow {
+             box-shadow: 0 15px 40px rgba(247, 37, 133, 0.4), 0 0 0 8px rgba(0, 0, 0, 0.1);
+        }
+        .light-mode .ai-section-gradient {
+            background: #E9ECEF;
+        }
+        .light-mode .ai-title-gradient {
+            background: linear-gradient(90deg, #4895EF, #F72585);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: none;
+        }
+        .light-mode .ai-info-card {
+            background-color: #FFFFFF;
+            border-left: 5px solid #4895EF;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .light-mode .ai-info-card:hover {
+            box-shadow: 0 15px 40px rgba(72, 149, 239, 0.2);
+        }
+
+        /* --- Custom styling for the generic person icon image --- */
+        .generic-person-icon {
+            width: 150px; /* Adjust as needed */
+            height: 150px; /* Adjust as needed */
+            border-radius: 50%; /* Make it circular */
+            background: linear-gradient(135deg, #F72585, #4895EF); /* Gradient background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: auto; /* Center it */
+            margin-bottom: 1rem; /* mb-4 */
+            box-shadow: 0 0 15px rgba(247, 37, 133, 0.7); /* Subtle glow */
+            border: 4px solid rgba(255, 255, 255, 0.2); /* Light border */
+        }
+        .generic-person-icon svg {
+            width: 80px; /* Adjust size of the SVG icon */
+            height: 80px;
+            color: white; /* Color of the person silhouette */
+        }
+
+        /* Instagram Logo Style */
+        .instagram-logo {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(220, 39, 67, 0.4);
+        }
+        .instagram-logo:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(220, 39, 67, 0.6);
+        }
+
+        /* Social Media Icons Style */
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            color: white;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .social-icon:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+        .facebook-icon {
+            background: #1877F2;
+        }
+        .linkedin-icon {
+            background: #0077B5;
+        }
+        .twitter-icon {
+            background: #1DA1F2;
+        }
+
+        /* User Info Styles */
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .user-name {
+            color: #4895EF;
+            font-weight: 600;
+        }
+        .logout-btn {
+            background: #F72585;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .logout-btn:hover {
+            background: #D61A70;
+            transform: translateY(-1px);
+        }
+
+    </style>
+</head>
+<body class="bg-gray-800 font-sans">
+    
+    <div id="login-modal" class="fixed inset-0 z-[9999] hidden flex items-center justify-center p-4 transition-opacity duration-300">
+        <div class="login-bg-circle circle-1"></div>
+        <div class="login-bg-circle circle-2"></div>
+        <div class="login-bg-circle circle-3"></div>
+        
+        <div class="relative w-full max-w-sm login-card text-center">
+            
+            <button id="theme-toggle" onclick="toggleTheme(); return false;" class="absolute top-4 left-4 text-gray-400 hover:text-primary transition-colors duration-200 z-20">
+                <svg id="theme-icon-dark" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                <svg id="theme-icon-light" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+            </button>
+            
+            <h1 class="login-title text-3xl mb-1">Who Protect</h1>
+            <p class="text-white text-3xl font-extrabold mb-1">Welcome back !!!</p>
+            <p class="text-sm text-gray-400 mb-8">Sign in to access your safety dashboard</p>
+
+            <form id="login-form" action="#" method="POST" class="space-y-6">
+                
+                <div class="relative text-left">
+                    <label for="email" class="text-xs font-semibold text-gray-300 block mb-1">Email</label>
+                    <div class="login-input-group flex items-center p-3">
+                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-2-5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2h14a2 2 0 002-2V5z"></path></svg>
+                        <input type="email" id="email" placeholder="Enter your email" required class="flex-grow p-0">
+                    </div>
+                </div>
+
+                <div class="relative text-left">
+                    <label for="password" class="text-xs font-semibold text-gray-300 block mb-1">Password</label>
+                    <div class="login-input-group flex items-center p-3">
+                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6-6h-2m-1 7h2m2-5h-2m1 5h2m-1 5h2m-1-10h2m-1 5h2m-1-5h2"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 10a6 6 0 11-12 0 6 6 0 0112 0z"></path></svg>
+                        <input type="password" id="password" placeholder="Enter your password" required class="flex-grow p-0">
+                        <span class="cursor-pointer text-gray-400">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                        </span>
+                    </div>
+                    <a href="#" class="text-xs font-semibold text-primary hover:text-rose-400 transition float-right mt-1">Forgot Password?</a>
+                </div>
+                
+                <button type="submit" class="btn-gradient w-full py-3 text-white rounded-xl text-lg mt-8">
+                    SIGN IN
+                </button>
+
+                <div class="flex items-center my-4">
+                    <div class="flex-grow border-t border-gray-600"></div>
+                    <span class="mx-4 text-gray-400 text-sm font-bold">Or</span>
+                    <div class="flex-grow border-t border-gray-600"></div>
+                </div>
+
+                <p class="text-sm text-gray-400">
+                    I don't have an account? 
+                    <a href="#" class="font-semibold text-primary hover:text-rose-400 transition">Sign up</a>
+                </p>
+
+            </form>
+        </div>
+        <button onclick="closeModal()" class="absolute top-4 right-4 text-white text-2xl z-20 hover:text-primary transition-colors duration-200">
+            &times;
+        </button>
+    </div>
+    <div id="scroll-progress-bar" class="fixed top-0 left-0 h-1 bg-secondary z-[9999]"></div>
+
+    <button id="back-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+    </button>
+
+
+    <nav id="main-nav" class="sticky sticky-nav top-0 z-50 bg-dark-bg shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <a href="#" class="flex items-center space-x-2 leading-none">
+                    <img 
+                        src="i1.jpg" 
+                        alt="WHO_PROTECT Logo" 
+                        class="site-logo-image" 
+                    >
+                    <div class="flex flex-col items-start leading-none">
+                        <span class="site-logo-text">WHO_PROTECT</span>
+                        <span class="site-tagline-text">Safety & Trust</span>
+                    </div>
+                </a>
+                
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#hero" class="text-gray-300 hover:text-primary transition duration-150">Home</a>
+                    <a href="#blog" class="text-gray-300 hover:text-primary transition duration-150">Blog</a>
+                    <a href="#team" class="text-gray-300 hover:text-primary transition duration-150">Team</a>
+                    <a href="#contact" class="text-gray-300 hover:text-primary transition duration-150">Contact</a>
+                    <a href="#dashboard" class="text-gray-300 hover:text-primary transition duration-150">Dashboard</a>
+                    
+                    <a href="#" onclick="toggleTheme(); return false;" class="text-gray-300 hover:text-primary transition-colors duration-200 z-20">
+                        <svg id="nav-theme-icon-dark" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                        <svg id="nav-theme-icon-light" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    </a>
+                   
+                    <!-- User Info Section (Initially Hidden) -->
+                    <div id="user-info-section" class="user-info hidden">
+                        <span class="user-name" id="user-display-name">User</span>
+                        <button id="logout-btn" class="logout-btn">Logout</button>
+                    </div>
+                    
+                    <!-- Sign In Button (Initially Visible) -->
+                    <a href="#" onclick="openModal(); return false;" id="sign-in-btn" class="btn-gradient px-6 py-2 text-white rounded-full text-md">
+                        Sign In
+                    </a>
+                </div>
+                <button id="menu-button" class="md:hidden text-gray-300 hover:text-primary focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 shadow-lg">
+            <a href="#hero" class="block px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700">Home</a>
+            <a href="#blog" class="block px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700">Blog</a>
+            <a href="#team" class="block px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700">Team</a>
+            <a href="#contact" class="block px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700">Contact</a>
+            <a href="#dashboard" class="block px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700">Dashboard</a>
+            <a href="#" onclick="toggleTheme(); return false;" class="block px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700">Toggle Theme</a>
+            <!-- Mobile User Info Section -->
+            <div id="mobile-user-info-section" class="hidden">
+                <div class="px-3 py-2 text-base font-medium text-gray-300 border-t border-gray-700">
+                    <span id="mobile-user-display-name">User</span>
+                </div>
+                <a href="#" id="mobile-logout-btn" class="block px-3 py-2 text-base font-medium text-white bg-primary hover:bg-rose-700">Logout</a>
+            </div>
+            <!-- Mobile Sign In Button -->
+            <a href="#" onclick="openModal(); return false;" id="mobile-sign-in-btn" class="block px-3 py-2 text-base font-medium text-white bg-primary hover:bg-rose-700">Sign In</a>
+        </div>
+    </nav>
+
+    <section id="hero" class="bg-gray-800 text-white py-16 md:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
+            
+            <div class="grid md:grid-cols-2 gap-10 items-center">
+                
+                <div id="hero-text-content" class="hero-text-content text-center md:text-left">
+                    <h1 class="hero-text text-5xl md:text-7xl font-serif font-extrabold mb-4 leading-tight text-secondary">
+                        A Digital Guardian.<br class="hidden sm:inline"> Always By Your Side.
+                    </h1>
+                    <p class="text-lg md:text-xl opacity-90 mb-8 max-w-xl md:max-w-full mx-auto md:mx-0 text-gray-300">
+                        **SafeGuard** सिर्फ एक डिवाइस नहीं है, यह **24/7 सुरक्षा** का एक वादा है। एक बटन दबाते ही **700 अलर्ट्स** और **लाइव एविडेंस रिकॉर्डिंग** शुरू हो जाती है।
+                    </p>
+
+                    <a href="#cta" class="btn-primary inline-block px-8 py-3 bg-secondary text-gray-900 font-bold rounded-full text-lg shadow-2xl hover:bg-blue-600">
+                        Secure Your Peace of Mind Now
+                    </a>
+
+                    <div class="mt-8 flex items-center space-x-6">
+                        
+                        <a href="#features" class="btn-explore-gradient inline-flex items-center space-x-2 px-6 py-3 text-white rounded-xl text-lg shadow-xl">
+                            <span>Explore</span>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </a>
+
+                        <!-- Instagram Logo Added Below Explore Button -->
+                        <a href="https://instagram.com/Who_Protect0" target="_blank" class="instagram-logo">
+                            📷
+                        </a>
+                        
+                        <a href="#" class="text-3xl text-blue-600 hover:text-blue-500 transition">f</a> 
+                        <a href="#" class="text-3xl text-blue-400 hover:text-blue-300 transition">in</a> 
+                    </div>
+                </div>
+                <div id="hero-image-content" class="hero-image-content flex justify-center p-4">
+                    <img 
+                        src="p.jpg" 
+                        alt="SafeGuard Device and Mobile Application Interface" 
+                        class="w-full max-w-lg h-auto object-cover rounded-3xl transition duration-500 image-3d-shadow"
+                        style="max-height: 450px;" 
+                        onerror="this.onerror=null; this.src='p.jpg';" 
+                    >
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ai" class="ai-section-gradient text-white py-16 md:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="flex justify-center p-4">
+                    <div class="w-48 h-48 md:w-64 md:h-64 flex items-center justify-center rounded-full bg-primary/20 border-8 border-primary/50 shadow-2xl animate-title" style="box-shadow: 0 0 40px rgba(247, 37, 133, 0.7);">
+                        <span class="text-8xl text-primary font-bold">🧠</span>
+                    </div>
+                </div>
+                <div class="text-center md:text-left">
+                    <p class="text-sm font-semibold uppercase text-secondary mb-2 process-step">PROACTIVE SAFETY</p>
+                    <h2 class="ai-title-gradient text-4xl md:text-5xl font-serif font-extrabold mb-6 animate-title"> Advanced AI Threat Detection </h2>
+                    <p class="text-lg text-gray-300 mb-8 process-step"> SafeGuard uses on-device Artificial Intelligence to monitor your environment and physical state, triggering an alert even if you can't press the button. </p>
+
+                    <div class="space-y-4 mb-8">
+                        <div class="ai-info-card p-4 rounded-lg shadow-md flex items-center space-x-4">
+                            <span class="text-2xl text-primary">🗣️</span>
+                            <p class="text-md font-semibold text-white">Scream Recognition: Automatically detects a cry for help using local audio processing.</p>
+                        </div>
+                        <div class="ai-info-card p-4 rounded-lg shadow-md flex items-center space-x-4">
+                            <span class="text-2xl text-primary">🏃‍♀️</span>
+                            <p class="text-md font-semibold text-white">Sudden Fall/Run Detection: Accelerometer data instantly recognizes aggressive physical changes.</p>
+                        </div>
+                    </div>
+                    <a href="#technology" class="btn-primary inline-block px-8 py-3 bg-primary text-white font-bold rounded-full text-lg shadow-2xl hover:bg-rose-700"> SEE AI MECHANISM </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog" class="py-16 md:py-24 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="animate-title text-4xl md:text-5xl font-serif font-extrabold text-center text-primary mb-4 opacity-0"> News Blog </h2>
+            <p class="text-lg text-gray-400 text-center mb-12 process-step"> Stay informed with the latest headlines, real stories, and timely updates. Stay updated. Stay empowered. </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="blog-card md:col-span-1 block rounded-xl shadow-lg overflow-hidden border-t-4 border-primary/50">
+                    <img src="b1.jpg" alt="Empowering Women" class="w-full h-48 object-cover transition duration-300 group-hover:scale-105" >
+                    <div class="p-6">
+                        <div class="mb-3">
+                            <span class="blog-meta-tag">FREEDOM WITHOUT FEAR</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2"> Empowering Women, One Click at a Time: The Story Behind SafeGuard </h3>
+                        <p class="text-gray-400 text-sm mb-4"> SafeGuard isn't just another wearable—it's a promise that no woman should have to face fear alone. It's a blend of empathy and technology... </p>
+                        <div class="flex justify-between items-center text-sm text-gray-500 border-t border-gray-700 pt-4 mt-4">
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-card md:col-span-1 block rounded-xl shadow-lg overflow-hidden border-t-4 border-primary/50">
+                    <img src="b2.jpg" alt="Alerts and Global Communication" class="w-full h-48 object-cover transition duration-300 group-hover:scale-105" >
+                    <div class="p-6">
+                        <div class="mb-3">
+                            <span class="blog-meta-tag bg-safety-green">TECHNOLOGY</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2"> The Science of Instant Alerts: How 700 Calls Save Lives </h3>
+                        <p class="text-gray-400 text-sm mb-4"> Deep dive into the cloud API and Twilio integration that powers our high-volume alert system for maximum reach. </p>
+                        <div class="flex justify-between items-center text-sm text-gray-500 border-t border-gray-700 pt-4 mt-4">
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-card md:col-span-1 block rounded-xl shadow-lg overflow-hidden border-t-4 border-primary/50">
+                    <img src="b3.jpg" alt="Tracking and Path Deviation" class="w-full h-48 object-cover transition duration-300 group-hover:scale-105" >
+                    <div class="p-6">
+                        <div class="mb-3">
+                            <span class="blog-meta-tag bg-secondary text-gray-900">TIPS & TRICKS</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2"> Maximizing Your Safety: Utilizing the Path Deviation Feature </h3>
+                        <p class="text-gray-400 text-sm mb-4"> A guide on setting up safe routes and how the continuous tracking feature adds an extra layer of proactive protection. </p>
+                        <div class="flex justify-between items-center text-sm text-gray-500 border-t border-gray-700 pt-4 mt-4">
+                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="py-16 md:py-24 bg-gray-900 text-center">
+        <div class="container mx-auto px-4">
+            <h2 class="animate-title text-4xl md:text-5xl font-serif font-extrabold text-center text-secondary mb-4 opacity-0">Meet Our Dedicated Team</h2>
+            <p class="text-lg text-gray-400 text-center mb-12 process-step">Driven by a shared mission to enhance safety and trust.</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="team-member-card bg-dark-bg p-6 rounded-xl shadow-lg hover:shadow-primary/50 transition duration-300 cursor-pointer" data-member-id="member1">
+                    <div class="generic-person-icon">
+                        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary">Meet Mayani</h3>
+                    <p class="text-gray-400">Team Member</p>
+                </div>
+                <div class="team-member-card bg-dark-bg p-6 rounded-xl shadow-lg hover:shadow-primary/50 transition duration-300 cursor-pointer" data-member-id="member2">
+                    <div class="generic-person-icon">
+                        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-secondary">Meet Dabhi</h3>
+                    <p class="text-gray-400">Team Member</p>
+                </div>
+                <div class="team-member-card bg-dark-bg p-6 rounded-xl shadow-lg hover:shadow-primary/50 transition duration-300 cursor-pointer" data-member-id="member3">
+                    <div class="generic-person-icon">
+                        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary">Sneh Dhameliya</h3>
+                    <p class="text-gray-400">Team Member</p>
+                </div>
+                <div class="team-member-card bg-dark-bg p-6 rounded-xl shadow-lg hover:shadow-primary/50 transition duration-300 cursor-pointer" data-member-id="member4">
+                    <div class="generic-person-icon">
+                        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-secondary">Daksh Tejani</h3>
+                    <p class="text-gray-400">Team Member</p>
+                </div>
+                <div class="team-member-card bg-dark-bg p-6 rounded-xl shadow-lg hover:shadow-primary/50 transition duration-300 cursor-pointer" data-member-id="member5">
+                    <div class="generic-person-icon">
+                        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary">Sarvaiya Urmila</h3>
+                    <p class="text-gray-400">Team Member</p>
+                </div>
+                 <div class="team-member-card bg-dark-bg p-6 rounded-xl shadow-lg hover:shadow-primary/50 transition duration-300 cursor-pointer" data-member-id="member6">
+                    <div class="generic-person-icon">
+                        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-secondary">Patel Prapti</h3>
+                    <p class="text-gray-400">Team Member</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="features" class="py-16 md:py-24 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="animate-title text-4xl md:text-5xl font-serif font-extrabold text-center text-secondary mb-16 opacity-0"> Unmatched Protection in Every Scenario </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <div class="feature-card bg-gray-900 p-6 rounded-xl shadow-lg border-t-4 border-primary transition duration-300">
+                    <div class="icon-box mx-auto mb-4">📞</div>
+                    <h3 class="text-xl font-bold text-white mb-2"> 700+ Global Alerts </h3>
+                    <p class="text-gray-400"> Instant, multi-channel communication to emergency contacts and authorities worldwide. </p>
+                </div>
+
+                <div class="feature-card bg-gray-900 p-6 rounded-xl shadow-lg border-t-4 border-secondary transition duration-300">
+                    <div class="icon-box mx-auto mb-4">📹</div>
+                    <h3 class="text-xl font-bold text-white mb-2"> Live Evidence Recording </h3>
+                    <p class="text-gray-400"> Automatically records audio/video evidence and uploads instantly to secure cloud storage. </p>
+                </div>
+
+                <div class="feature-card bg-gray-900 p-6 rounded-xl shadow-lg border-t-4 border-primary transition duration-300">
+                    <div class="icon-box mx-auto mb-4">📍</div>
+                    <h3 class="text-xl font-bold text-white mb-2"> Real-time GPS Tracking </h3>
+                    <p class="text-gray-400"> Continuous, accurate location monitoring accessible only by your trusted contacts. </p>
+                </div>
+
+                <div class="feature-card bg-gray-900 p-6 rounded-xl shadow-lg border-t-4 border-secondary transition duration-300">
+                    <div class="icon-box mx-auto mb-4">🛡️</div>
+                    <h3 class="text-xl font-bold text-white mb-2"> Discreet Panic Button </h3>
+                    <p class="text-gray-400"> Simple, one-touch activation embedded in a stylish, unnoticeable device. </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="py-16 md:py-24 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="animate-title text-4xl md:text-5xl font-serif font-extrabold text-primary mb-4 opacity-0"> Safety in Three Simple Steps </h2>
+            <p class="text-lg text-gray-400 mb-16 process-step"> Our system ensures maximum speed and reliability when it matters most. </p>
+
+            <div class="relative">
+                <div class="absolute hidden md:block w-full h-1 bg-gray-700 top-1/2 transform -translate-y-1/2 z-0"></div>
+                
+                <div class="grid md:grid-cols-3 gap-12 relative z-10">
+                    
+                    <div class="process-step">
+                        <div class="w-16 h-16 rounded-full bg-primary/20 border-4 border-primary text-3xl text-primary font-bold mx-auto flex items-center justify-center mb-4">1</div>
+                        <h3 class="text-2xl font-semibold text-white mb-2"> Activate </h3>
+                        <p class="text-gray-400"> Press the discreet SafeGuard button or trigger the AI detection system. </p>
+                    </div>
+
+                    <div class="process-step md:mt-20">
+                        <div class="w-16 h-16 rounded-full bg-secondary/20 border-4 border-secondary text-3xl text-secondary font-bold mx-auto flex items-center justify-center mb-4">2</div>
+                        <h3 class="text-2xl font-semibold text-white mb-2"> Alert </h3>
+                        <p class="text-gray-400"> Instantly sends GPS, live video/audio, and 700 alerts to your network. </p>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="w-16 h-16 rounded-full bg-primary/20 border-4 border-primary text-3xl text-primary font-bold mx-auto flex items-center justify-center mb-4">3</div>
+                        <h3 class="text-2xl font-semibold text-white mb-2"> Protect </h3>
+                        <p class="text-gray-400"> Emergency contacts and police receive precise location data for rapid response. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="technology" class="py-16 md:py-24 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="animate-title text-4xl md:text-5xl font-serif font-extrabold text-center text-primary mb-4 opacity-0"> Built on Cutting-Edge Technology </h2>
+            <p class="text-lg text-gray-400 text-center mb-16 process-step"> Leveraging the best of IoT, Cloud, and AI for uncompromising safety. </p>
+            
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <div class="tech-card animate-scale p-6 rounded-lg text-center is-visible">
+                    <div class="tech-card-content">
+                        <span class="text-5xl text-secondary mb-3 block">📡</span>
+                        <h4 class="text-lg font-semibold text-white">Low-Power IoT</h4>
+                        <p class="text-sm text-gray-400">Efficient communication with minimal battery drain.</p>
+                    </div>
+                </div>
+
+                <div class="tech-card animate-scale p-6 rounded-lg text-center is-visible">
+                    <div class="tech-card-content">
+                        <span class="text-5xl text-secondary mb-3 block">☁️</span>
+                        <h4 class="text-lg font-semibold text-white">Encrypted Cloud Storage</h4>
+                        <p class="text-sm text-gray-400">Secure, time-stamped evidence for legal use.</p>
+                    </div>
+                </div>
+
+                <div class="tech-card animate-scale p-6 rounded-lg text-center is-visible">
+                    <div class="tech-card-content">
+                        <span class="text-5xl text-secondary mb-3 block">🌐</span>
+                        <h4 class="text-lg font-semibold text-white">Twilio Global API</h4>
+                        <p class="text-sm text-gray-400">Guaranteed delivery of critical alerts worldwide.</p>
+                    </div>
+                </div>
+                
+                <div class="tech-card animate-scale p-6 rounded-lg text-center is-visible">
+                    <div class="tech-card-content">
+                        <span class="text-5xl text-secondary mb-3 block">🔒</span>
+                        <h4 class="text-lg font-semibold text-white">E2E Encryption</h4>
+                        <p class="text-sm text-gray-400">Private location and evidence data, always protected.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="py-16 md:py-24 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="animate-title text-4xl md:text-5xl font-serif font-extrabold text-secondary mb-4 opacity-0"> What Our Community Says </h2>
+            <p class="text-lg text-gray-400 mb-16 process-step"> Real stories of safety, trust, and peace of mind. </p>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <div class="testimonial-card bg-dark-bg p-8 rounded-xl shadow-lg border-t-4 border-primary text-left">
+                    <p class="text-gray-300 italic mb-4">"The scream detection saved my daughter from a terrifying situation. The response time was unbelievable. It's more than a device, it's hope."</p>
+                    <div class="flex items-center space-x-4 border-t border-gray-700 pt-4">
+                       
+                        <div>
+                            <p class="font-semibold text-white">Anjali K.</p>
+                            <p class="text-sm text-primary">Parent, Pune</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card bg-dark-bg p-8 rounded-xl shadow-lg border-t-4 border-secondary text-left">
+                    <p class="text-gray-300 italic mb-4">"I travel alone often. Knowing that a single button press instantly alerts my entire network, plus the evidence is recorded, gives me true confidence."</p>
+                    <div class="flex items-center space-x-4 border-t border-gray-700 pt-4">
+                       
+                        <div>
+                            <p class="font-semibold text-white">Neha S.</p>
+                            <p class="text-sm text-secondary">Software Engineer, Bangalore</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card bg-dark-bg p-8 rounded-xl shadow-lg border-t-4 border-primary text-left">
+                    <p class="text-gray-300 italic mb-4">"The discreet design is perfect. It looks like a stylish accessory, but I know it's the most powerful safeguard I own. Highly recommend WHO_PROTECT."</p>
+                    <div class="flex items-center space-x-4 border-t border-gray-700 pt-4">
+                        
+                        <div>
+                            <p class="font-semibold text-white">Meera V.</p>
+                            <p class="text-sm text-primary">Student, Delhi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-16 md:py-24 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="animate-title text-4xl md:text-5xl font-serif font-extrabold text-center text-secondary mb-4 opacity-0"> Get In Touch </h2>
+            <p class="text-lg text-gray-400 text-center mb-16 process-step"> Have a question or want to discuss a partnership? We're here to help. </p>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                
+                <div class="contact-box bg-gray-900 p-8 rounded-xl shadow-lg border-l-4 border-primary">
+                    <h3 class="text-2xl font-serif font-bold text-white mb-4">Contact Information</h3>
+                    <div class="space-y-4 text-gray-400">
+                        <p class="flex items-center"><span class="text-primary mr-3">📧</span> **Email:** meetmayani2006@gmail.com</p>
+                        <p class="flex items-center"><span class="text-primary mr-3">📞</span> **Phone:** +91 93285 46818</p>
+                        <p class="flex items-center"><span class="text-primary mr-3">📍</span> **Address:**  Bhavnagar - 364001</p>
+                    </div>
+                    <div class="mt-8 flex space-x-4">
+                        <!-- Instagram Button -->
+                        <a href="https://instagram.com/Who_Protect0" target="_blank" class="social-icon instagram-logo">
+                            📷
+                        </a>
+                        <!-- Facebook Button -->
+                        <a href="#" class="social-icon facebook-icon">
+                            f
+                        </a>
+                        <!-- LinkedIn Button -->
+                        <a href="#" class="social-icon linkedin-icon">
+                            in
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-form-content bg-gray-900 p-8 rounded-xl shadow-lg border-l-4 border-secondary">
+                    <h3 class="text-2xl font-serif font-bold text-white mb-4">Send Us a Message</h3>
+                    <form action="#" method="POST" class="space-y-4">
+                        <input type="text" placeholder="Your Name" class="w-full p-3 rounded-lg bg-dark-bg border border-gray-700 focus:ring-primary focus:border-primary text-white" required>
+                        <input type="email" placeholder="Your Email" class="w-full p-3 rounded-lg bg-dark-bg border border-gray-700 focus:ring-primary focus:border-primary text-white" required>
+                        <textarea placeholder="Your Message" rows="4" class="w-full p-3 rounded-lg bg-dark-bg border border-gray-700 focus:ring-primary focus:border-primary text-white" required></textarea>
+                        <button type="submit" class="btn-primary w-full py-3 bg-primary text-white font-bold rounded-lg text-lg">Send Message</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark-bg text-gray-400 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
+                
+                <div>
+                    <h4 class="text-white text-lg font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#hero" class="hover:text-primary transition">Home</a></li>
+                        <li><a href="#team" class="hover:text-primary transition">Team</a></li>
+                        <li><a href="#features" class="hover:text-primary transition">Features</a></li>
+                        <li><a href="#blog" class="hover:text-primary transition">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white text-lg font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-primary transition">FAQ</a></li>
+                        <li><a href="#contact" class="hover:text-primary transition">Help Center</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white text-lg font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-primary transition">License</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Security</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Takedown Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-span-2">
+                    <h4 class="text-white text-lg font-semibold mb-4">Newsletter</h4>
+                    <p class="mb-4">Get the latest updates and safety tips in your inbox.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" class="flex-grow p-3 rounded-l-lg bg-gray-800 border-none focus:outline-none text-white">
+                        <button type="submit" class="btn-gradient px-4 py-3 text-white rounded-r-lg">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-gray-700 text-center text-sm">
+                &copy; 2024 WHO_PROTECT. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <div id="team-detail-modal" class="fixed inset-0 bg-black bg-opacity-75 z-[9999] hidden flex items-center justify-center p-4 transition-opacity duration-300">
+        <div class="relative w-full max-w-2xl mx-auto my-12 p-8 bg-dark-bg rounded-lg shadow-2xl transform scale-95 opacity-0 transition-all duration-500 ease-out">
+            
+            <div id="modal-content-area" class="text-left">
+                <button id="close-modal-button" class="absolute top-4 right-4 text-gray-400 hover:text-primary transition duration-300 text-2xl font-bold">&times;</button>
+                
+                <div class="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
+                    <div id="modal-member-photo-wrapper" class="w-40 h-40 rounded-full border-4 border-primary/50 flex-shrink-0 flex items-center justify-center generic-person-icon">
+                        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    
+                    <div>
+                        <h3 id="modal-member-name" class="text-3xl font-serif text-primary mb-2"></h3>
+                        <p id="modal-member-role" class="text-xl text-secondary mb-4"></p>
+                        
+                        <p id="modal-member-description" class="text-gray-300 leading-relaxed mb-4">
+                            </p>
+
+                        <div id="modal-member-social" class="flex space-x-4 mt-4">
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        // Function to apply the theme from localStorage on load
+        function applySavedTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.body.classList.remove('dark-mode', 'light-mode');
+            document.body.classList.add(savedTheme + '-mode');
+            updateThemeIcons(savedTheme);
+        }
+
+        // Function to toggle between light and dark modes
+        function toggleTheme() {
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            const newTheme = isDarkMode ? 'light' : 'dark';
+            
+            document.body.classList.remove('dark-mode', 'light-mode');
+            document.body.classList.add(newTheme + '-mode');
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcons(newTheme);
+        }
+
+        // Helper function to update the moon/sun icons
+        function updateThemeIcons(theme) {
+            const darkIcons = document.querySelectorAll('[id$="-dark"]');
+            const lightIcons = document.querySelectorAll('[id$="-light"]');
+
+            if (theme === 'light') {
+                darkIcons.forEach(icon => icon.classList.add('hidden'));
+                lightIcons.forEach(icon => icon.classList.remove('hidden'));
+            } else {
+                darkIcons.forEach(icon => icon.classList.remove('hidden'));
+                lightIcons.forEach(icon => icon.classList.add('hidden'));
+            }
+        }
+
+        // Check if user is logged in
+        function checkLoginStatus() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const userName = localStorage.getItem('userName') || 'User';
+            
+            const userInfoSection = document.getElementById('user-info-section');
+            const signInBtn = document.getElementById('sign-in-btn');
+            const userDisplayName = document.getElementById('user-display-name');
+            
+            const mobileUserInfoSection = document.getElementById('mobile-user-info-section');
+            const mobileSignInBtn = document.getElementById('mobile-sign-in-btn');
+            const mobileUserDisplayName = document.getElementById('mobile-user-display-name');
+            
+            if (isLoggedIn) {
+                // User is logged in - show user info, hide sign in
+                userInfoSection.classList.remove('hidden');
+                signInBtn.classList.add('hidden');
+                userDisplayName.textContent = userName;
+                
+                mobileUserInfoSection.classList.remove('hidden');
+                mobileSignInBtn.classList.add('hidden');
+                mobileUserDisplayName.textContent = userName;
+            } else {
+                // User is not logged in - show sign in, hide user info
+                userInfoSection.classList.add('hidden');
+                signInBtn.classList.remove('hidden');
+                
+                mobileUserInfoSection.classList.add('hidden');
+                mobileSignInBtn.classList.remove('hidden');
+            }
+        }
+
+        // Handle login form submission
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Simple validation
+            if (email && password) {
+                // Store login info in localStorage
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userName', email.split('@')[0]); // Use part of email as username
+                
+                // Close modal
+                closeModal();
+                
+                // Update UI
+                checkLoginStatus();
+                
+                // Show success message (optional)
+                alert('Login successful! Welcome back.');
+            } else {
+                alert('Please fill in all fields.');
+            }
+        });
+
+        // Handle logout
+        document.getElementById('logout-btn').addEventListener('click', function() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('userName');
+            checkLoginStatus();
+            alert('You have been logged out.');
+        });
+
+        // Handle mobile logout
+        document.getElementById('mobile-logout-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('userName');
+            checkLoginStatus();
+            alert('You have been logged out.');
+            // Close mobile menu after logout
+            document.getElementById('mobile-menu').classList.add('hidden');
+        });
+
+        // Check login status when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            checkLoginStatus();
+        });
+
+        // Function to handle scroll progress bar and back-to-top button
+        function updateScrollProgress() {
+            const scrollBar = document.getElementById('scroll-progress-bar');
+            const backToTop = document.getElementById('back-to-top');
+            
+            const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPosition = window.scrollY;
+            const progress = (scrollPosition / totalHeight) * 100;
+
+            scrollBar.style.width = progress + '%';
+            
+            // Show/Hide Back-to-Top button
+            if (scrollPosition > 300) {
+                backToTop.classList.add('fixed', 'bottom-4', 'right-4', 'p-3', 'rounded-full', 'shadow-lg', 'text-white', 'z-40');
+                backToTop.classList.remove('hidden');
+            } else {
+                backToTop.classList.add('hidden');
+                backToTop.classList.remove('fixed', 'bottom-4', 'right-4', 'p-3', 'rounded-full', 'shadow-lg', 'text-white', 'z-40');
+            }
+        }
+        
+        // --- Intersection Observer for Scroll-Reveal Animations ---
+        const intersectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Stop observing once visible
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            // Options: trigger when 20% of the element is visible
+            threshold: 0.2
+        });
+
+        function setupIntersectionObserver() {
+            // Select all elements targeted for scroll-reveal effects
+            const animatedElements = document.querySelectorAll(
+                '.feature-card, .process-step, .testimonial-card, .faq-item, .animate-title, #hero-text-content, #hero-image-content, .contact-box, .contact-form-content, .blog-card, .ai-info-card, .tech-card, .team-member-card' 
+            );
+            
+            animatedElements.forEach(el => {
+                intersectionObserver.observe(el);
+            });
+        }
+        
+        /* --- Login Modal Handlers --- */
+        function openModal() {
+            document.getElementById('login-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('login-modal').classList.add('hidden');
+        }
+        
+        /* --- Team Member Modal Logic (UPDATED FOR 6 MEMBERS) --- */
+
+        // 1. Define the content for your team members
+        const teamData = {
+            'member1': {
+                name: 'Meet Mayani',
+                role: 'Team Member',
+                // No photo URL needed now, as we're using generic icon HTML
+                description: 'Meet Mayani is a dedicated team member contributing to various aspects of the project. Their commitment ensures the smooth operation and success of our initiatives.',
+              
+                twitter: null
+            },
+            'member2': {
+                name: 'Meet Dabhi',
+                role: 'Team Member',
+                description: 'Meet Dabhi plays a crucial role in our team, bringing valuable insights and strong execution skills to every task. Their contributions are essential to our progress.',
+               
+                twitter: null
+            },
+            'member3': {
+                name: 'Sneh Dhameliya',
+                role: 'Team Member',
+                description: 'Sneh Dhameliya is a key member of the team, known for their innovative problem-solving and collaborative spirit. They consistently help us achieve our goals.',
+               
+                twitter: null
+            },
+            'member4': {
+                name: 'Daksh Tejani',
+                role: 'Team Member',
+                description: 'Daksh Tejani is an integral part of our development efforts, focusing on robust solutions and efficient implementation. Their technical expertise is invaluable.',
+               
+                twitter: null
+            },
+            'member5': {
+                name: 'Sarvaiya Urmila',
+                role: 'Team Member',
+                description: 'Sarvaiya Urmila is a dedicated team member, committed to maintaining high standards and contributing to a positive team environment. Their support is vital to our operations.',
+                
+                twitter: null
+            },
+            'member6': {
+                name: 'Patel Prapti',
+                role: 'Team Member',
+                description: 'Patel Prapti brings a fresh perspective and strong analytical skills to the team. Their contributions help in refining our strategies and improving our overall performance.',
+               
+                twitter: null
+            }
+        };
+
+        function setupTeamModal() {
+            const modal = document.getElementById('team-detail-modal');
+            const modalContent = modal.querySelector('div.relative');
+            const closeButton = document.getElementById('close-modal-button');
+            const teamCards = document.querySelectorAll('.team-member-card');
+            const modalMemberPhotoWrapper = document.getElementById('modal-member-photo-wrapper');
+
+
+            const openMemberModal = () => {
+                modal.classList.remove('hidden');
+                // Force reflow/repaint for CSS transition to work
+                void modal.offsetWidth; 
+                modal.style.opacity = '1';
+                modalContent.classList.remove('scale-95', 'opacity-0');
+            };
+
+            const closeMemberModal = () => {
+                modal.style.opacity = '0';
+                modalContent.classList.add('scale-95', 'opacity-0');
+                // Wait for the transition before hiding completely
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
+            };
+
+            // Click on a team member card
+            teamCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const memberId = card.getAttribute('data-member-id');
+                    const data = teamData[memberId];
+
+                    if (!data) return; // Exit if data not found
+
+                    // 2. Populate the modal with data
+                    // For the modal, we'll keep the generic icon in its wrapper, no direct image src needed
+                    // document.getElementById('modal-member-photo').src = data.photo; // This line is no longer needed
+                    // document.getElementById('modal-member-photo').alt = data.name; // This line is no longer needed
+                    document.getElementById('modal-member-name').textContent = data.name;
+                    document.getElementById('modal-member-role').textContent = data.role;
+                    document.getElementById('modal-member-description').textContent = data.description;
+                    
+                    // Handle Social Links
+                    const socialDiv = document.getElementById('modal-member-social');
+                    socialDiv.innerHTML = ''; // Clear previous links
+
+                    if (data.linkedin) {
+                        socialDiv.innerHTML += `<a href="${data.linkedin}" class="text-gray-400 hover:text-primary transition duration-300" target="_blank">LinkedIn</a>`;
+                    }
+                    if (data.twitter) {
+                        socialDiv.innerHTML += `<a href="${data.twitter}" class="text-gray-400 hover:text-primary transition duration-300" target="_blank">Twitter</a>`;
+                    }
+
+                    openMemberModal();
+                });
+            });
+
+            // 3. Close handlers
+            closeButton.addEventListener('click', closeMemberModal);
+
+            // Close when clicking outside the modal content
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeMemberModal();
+                }
+            });
+
+            // Close on ESC key press
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                    closeMemberModal();
+                }
+            });
+        }
+        
+        /* --- End of Team Member Modal Logic (NEW) --- */
+
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // Apply saved theme first
+            applySavedTheme();
+
+            // --- Mobile Menu Toggle ---
+            const menuButton = document.getElementById('menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (menuButton && mobileMenu) {
+                menuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+            
+            // Setup the combined Scroll-Reveal observer for all sections
+            setupIntersectionObserver();
+            
+            // *** New: Setup the team modal functionality ***
+            setupTeamModal(); 
+
+            // Attach Global Scroll Event Listener for Progress Bar and Back-to-Top button
+            window.addEventListener('scroll', updateScrollProgress);
+
+            // Initial call
+            updateScrollProgress();
+        });
+    </script>
+</body>
+</html>
